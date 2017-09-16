@@ -6,10 +6,16 @@
 </p>
 
 <ul>
-  <%= @user.friends.each do |user| %>
-    <%= user.name %>
+  <%= @user.friendships.each do |friendship| %>
+    <li><%= friendship.friend.name %> <%= link_to "Remove friend", friendship, method: :delete %></li>
   <% end %>
 </ul>
 
+<p>Befriended by User</p>
+<ul>
+  <% @user.inverse_friends.each do |user| %>
+    <li><%= h user.name %></li>
+  <% end %>
+</ul>
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
